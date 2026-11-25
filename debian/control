@@ -1,0 +1,44 @@
+Source: pcmanfm-flux
+Section: utils
+Priority: optional
+Maintainer: crims0n <crims0n@minios.dev>
+XSBC-Original-Maintainer: Debian LXDE Maintainers <team+lxde@tracker.debian.org>
+Uploaders: Andrew Lee (李健秋) <ajqlee@debian.org>,
+           Andriy Grytsenko <andrej@rep.kiev.ua>,
+           ChangZhuo Chen (陳昌倬) <czchen@debian.org>
+Build-Depends: debhelper (>= 11), dh-autoreconf, intltool, libfm-gtk3-dev-flux (>= 1.4.0), pkg-config
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/lxde/pcmanfm
+Vcs-Browser: https://github.com/minios-linux/pcmanfm-flux
+Vcs-Git: https://github.com/minios-linux/pcmanfm-flux.git
+
+Package: pcmanfm-flux
+Architecture: any
+Provides: pcmanfm (= ${binary:Version})
+Conflicts: pcmanfm
+Replaces: pcmanfm
+Depends: ${misc:Depends}, ${shlibs:Depends},
+         libfm4-flux (>= 1.4.0),
+         libfm-gtk3-4-flux (>= 1.4.0)
+Recommends: gvfs-backends,
+            gvfs-fuse [!hurd-any],
+            lxde-icon-theme | gnome-icon-theme | oxygen-icon-theme | tango-icon-theme,
+            lxpolkit | polkit-1-auth-agent | policykit-1-gnome
+Description: extremely fast and lightweight file manager
+ PCMan File Manager is a GTK+ based file manager, featuring:
+ .
+  * Extremely fast and lightweight
+  * Can be started in one second on normal machine
+  * Tabbed browsing (similar to Firefox)
+  * Drag & Drop support
+  * Files can be dragged among tabs
+  * Load large directories in reasonable time
+  * File association support (Default application)
+  * Basic thumbnail support
+  * Bookmarks support
+  * Handles non-UTF-8 encoded filenames correctly
+  * Provide icon view and detailed list view
+  * Standard compliant (Follows FreeDesktop.org)
+  * Clean and user-friendly interface (GTK+ 2)
+  * Support GVFS for auto-mount handling on removable devices

@@ -1,0 +1,21 @@
+# PCManFM Flux
+
+Based on tagged upstream PCManFM 1.4.0, Debian 1.4.0-1 packaging, and
+Tomas M's desktop/browser/standalone improvements. Existing upstream
+contributors and their Git history remain unchanged.
+
+The source and installed package are named pcmanfm-flux; the binary remains
+/usr/bin/pcmanfm, and the ordinary pcmanfm package is replaced. The versioned
+virtual Provides on pcmanfm keeps dependencies on the original binary package
+satisfiable; Conflicts/Replaces prevent two owners of the same paths.
+
+Tomas M's patches are maintained as Debian quilt patches. At runtime,
+pcmanfm-flux requires the matching MiniOS libfm4-flux and
+libfm-gtk3-4-flux libraries rather than allowing an unpatched backend.
+Its build dependencies use libfm-gtk3-dev-flux and its original installed
+executable and desktop configuration paths are preserved.
+The one Debian package source is built on Bionic with GTK3 and
+debhelper 11; do not produce a separate Trixie binary set without an
+explicit technical requirement. The libfm-flux GTK2 component is also
+built for Bionic LXDE consumers from that same source package.
+Runtime GdkPixbuf dependencies support both old and new package names.

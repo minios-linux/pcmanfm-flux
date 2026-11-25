@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh ${@} --with autoreconf
+
+override_dh_autoreconf:
+	./autogen.sh
+	dh_autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-gtk=3
+
+override_dh_auto_install:
+	$(MAKE) DESTDIR=$(CURDIR)/debian/pcmanfm-flux install
+
+override_dh_installdocs:
+	dh_installdocs --link-doc=pcmanfm-flux
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS
+
+# Bionic's shlibs name was renamed in newer Debian/Ubuntu. Preserve the
+# exact minimum version emitted by dpkg-shlibdeps for both alternatives.
+override_dh_shlibdeps:
+	dh_shlibdeps
+	for f in debian/*.substvars; do \
+		[ -f "$$f" ] || continue; \
+		sed -i -E '/^shlibs:Depends=/s/libgdk-pixbuf2\.0-0( \([^)]*\))?/libgdk-pixbuf-2.0-0\1 | libgdk-pixbuf2.0-0\1/g' "$$f"; \
+	done
